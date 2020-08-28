@@ -12,8 +12,8 @@ import Search from './pages/Search';
 function App() {
   return (
     <div>
-      <NavbarC />
       <BrowserRouter>
+        <NavbarC />
         <Route exact path={['/', '/home', '/Search']} component={Search} />
       </BrowserRouter>
     </div>

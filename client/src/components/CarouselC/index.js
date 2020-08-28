@@ -8,7 +8,7 @@ const CarouselC = () => {
             <Carousel>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100"
+                        className="d-block w-100 carouselImg"
                         src={process.env.PUBLIC_URL + '/images/carousel1.jpg'}
                         alt="First slide"
                     />
@@ -18,7 +18,7 @@ const CarouselC = () => {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100"
+                        className="d-block w-100 carouselImg"
                         src={process.env.PUBLIC_URL + '/images/carousel2.jpg'}
                         alt="Third slide"
                     />
@@ -29,7 +29,7 @@ const CarouselC = () => {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100"
+                        className="d-block w-100 carouselImg"
                         src={process.env.PUBLIC_URL + '/images/carousel3.jpg'}
                         alt="Third slide"
                     />
