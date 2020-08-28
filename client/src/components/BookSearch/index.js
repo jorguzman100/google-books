@@ -1,12 +1,11 @@
 import React from 'react';
-import { Container, Card, Form, FormControl, Button } from 'react-bootstrap';
+import { Card, Form, FormControl, Button } from 'react-bootstrap';
 import './BookSearch.css'
 
 const BookSearch = () => {
 
     return (
-        <Container className='my-4'>
-            <Card>
+            <Card className='my-4'>
                 <Card.Header className='py-1'>Book Search</Card.Header>
                 <Card.Body>
                     <Form inline>
@@ -15,7 +14,6 @@ const BookSearch = () => {
                     </Form>
                 </Card.Body>
             </Card>
-        </Container>
     );
 }
 

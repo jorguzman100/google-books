@@ -1,11 +1,10 @@
 import React from 'react';
-import { Container, Carousel } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 import './CarouselC.css'
 
 
 const CarouselC = () => {
     return (
-        <Container>
             <Carousel>
                 <Carousel.Item>
                     <img
@@ -40,7 +39,6 @@ const CarouselC = () => {
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
-        </Container>
     );
 }
 
