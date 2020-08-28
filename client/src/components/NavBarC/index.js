@@ -9,8 +9,8 @@ function NavBarC() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#Search">Search</Nav.Link>
-          <Nav.Link href="#Save">Save</Nav.Link>
+          <Nav.Link href="/Search">Search</Nav.Link>
+          <Nav.Link href="/Save">Save</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

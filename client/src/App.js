@@ -1,11 +1,9 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 
 // Custom Components
 import NavbarC from "./components/NavBarC";
-import CarouselC from "./components/CarouselC";
-import BookSearch from "./components/BookSearch";
-import Results from "./components/Results";
+import Search from './pages/Search';
 
 
 // The app will not render correctly until you setup a Route component.
@@ -13,14 +11,12 @@ import Results from "./components/Results";
 // (https://reacttraining.com/react-router/web/example/basic)
 function App() {
   return (
-    <BrowserRouter>
     <div>
-        <NavbarC />
-        <CarouselC />
-        <BookSearch />
-        <Results />
+      <NavbarC />
+      <BrowserRouter>
+        <Route exact path={['/', '/Search']} component={Search} />
+      </BrowserRouter>
     </div>
-    </BrowserRouter>
   );
 }
 
