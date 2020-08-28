@@ -14,7 +14,7 @@ function App() {
     <div>
       <NavbarC />
       <BrowserRouter>
-        <Route exact path={['/', '/Search']} component={Search} />
+        <Route exact path={['/', '/home', '/Search']} component={Search} />
       </BrowserRouter>
     </div>
   );

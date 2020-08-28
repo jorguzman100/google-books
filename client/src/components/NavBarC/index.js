@@ -5,7 +5,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 function NavBarC() {
   return (
     <Navbar bg="primary" variant="dark" sticky="top" expand="sm">
-      <Navbar.Brand href="#home">Google Books</Navbar.Brand>
+      <Navbar.Brand href="/home">Google Books</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
