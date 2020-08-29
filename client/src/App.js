@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import NavbarC from "./components/NavBarC";
 import CarouselC from './components/CarouselC';
 import Search from './pages/Search';
+import Save from './pages/Save';
 
 
 // The app will not render correctly until you setup a Route component.
@@ -17,6 +18,7 @@ function App() {
         <NavbarC />
         <CarouselC />
         <Route exact path={['/', '/home', '/Search']} component={Search} />
+        <Route exact path={'/Save'} component={Save} />
       </BrowserRouter>
     </div>
   );
