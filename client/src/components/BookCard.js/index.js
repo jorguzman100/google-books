@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import './BookCard.css'
 
 
-const BookCard = () => {
+const BookCard = (props) => {
 
     const location = useLocation();
 
@@ -13,7 +13,7 @@ const BookCard = () => {
             <Card.Body className='p-2'>
                 <Row>
                     <Col xs={9}>
-                        <Card.Title className='mb-2 title'>Book Title</Card.Title>
+                        <Card.Title className='mb-2 title'>{props.bookTitle}</Card.Title>
                         <Card.Subtitle className="mb-0 text-muted subtitle">Book Subtitle</Card.Subtitle>
                         <p className="mb-1 text-muted authors">Written by: Authors</p>
                     </Col>
