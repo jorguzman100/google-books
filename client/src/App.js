@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 // Custom Components
 import NavbarC from "./components/NavBarC";
+import CarouselC from './components/CarouselC';
 import Search from './pages/Search';
 
 
@@ -14,6 +15,7 @@ function App() {
     <div>
       <BrowserRouter>
         <NavbarC />
+        <CarouselC />
         <Route exact path={['/', '/home', '/Search']} component={Search} />
       </BrowserRouter>
     </div>
