@@ -6,7 +6,7 @@ const BookSearch = () => {
 
     return (
             <Card className='my-4'>
-                <Card.Header className='py-1'>Book Search</Card.Header>
+                <Card.Header className='py-1 alert alert-primary'>Book Search</Card.Header>
                 <Card.Body>
                     <Form inline>
                         <FormControl type="text" placeholder="Search" className="mr-sm-2" />

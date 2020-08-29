@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { Link, useLocation } from "react-router-dom";
 
 function NavBarC() {
-  const location = useLocation();
+  let location = useLocation();
 
   return (
     <Navbar bg="primary" variant="dark" sticky="top" expand="sm">

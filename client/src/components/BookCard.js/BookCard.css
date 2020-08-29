@@ -1,0 +1,15 @@
+.bookCard .title,
+.bookCard .subtitle,
+.bookCard .authors,
+.bookCard .description {
+  font-size: 0.7rem;
+}
+
+.bookCard .btn {
+  font-size: 0.6rem;
+}
+
+.bookPic {
+  width: 12vw;
+  height: 10vh;
+}
