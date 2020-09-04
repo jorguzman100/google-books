@@ -33,3 +33,5 @@ mongoose.connect(process.env.MONGODB_URI || process.env.MONGODB_LOCAL,
 app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+/* MONGODB_LOCAL='mongodb://localhost/reactGoogleBooks' */
