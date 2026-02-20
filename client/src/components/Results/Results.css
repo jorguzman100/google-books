@@ -1,0 +1,114 @@
+.results-panel {
+  border: 1px solid var(--surface-border) !important;
+  border-radius: 24px !important;
+  background: var(--surface) !important;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.results-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 0 !important;
+  border-bottom: 1px solid var(--surface-border) !important;
+  background: transparent !important;
+  padding: 0.95rem 1.15rem !important;
+}
+
+.results-kicker {
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 0.3rem;
+}
+
+.results-panel-header h2 {
+  font-size: clamp(1.02rem, 1.7vw, 1.35rem);
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.results-count {
+  background: linear-gradient(130deg, rgba(31, 109, 255, 0.9), rgba(15, 196, 255, 0.85)) !important;
+  color: #ffffff !important;
+  padding: 0.4rem 0.7rem !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em;
+}
+
+.results-panel-body {
+  padding: 1.1rem !important;
+}
+
+.results-item {
+  animation: resultReveal 320ms ease;
+}
+
+.results-empty-state {
+  display: grid;
+  justify-items: center;
+  gap: 0.65rem;
+  text-align: center;
+  padding: 2.2rem 1rem;
+  border: 1px dashed var(--surface-border);
+  border-radius: 18px;
+  background: var(--surface-muted);
+}
+
+.results-empty-icon {
+  width: 58px;
+  height: 58px;
+}
+
+.results-empty-state h3 {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+}
+
+.results-empty-state p {
+  max-width: 520px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.book-feedback-alert {
+  margin-top: -0.22rem !important;
+  margin-bottom: 0.85rem !important;
+  border: 1px solid var(--surface-border) !important;
+  border-radius: 12px !important;
+  background: var(--surface-muted) !important;
+  color: var(--text-primary) !important;
+  font-size: 0.83rem;
+  box-shadow: var(--shadow-soft);
+}
+
+@keyframes resultReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 575px) {
+  .results-panel-header {
+    padding: 0.82rem 0.86rem !important;
+  }
+
+  .results-panel-body {
+    padding: 0.8rem !important;
+  }
+
+  .results-count {
+    font-size: 0.65rem !important;
+  }
+}
