@@ -1,66 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { Alert } from "react-bootstrap";
 
 // Components
-import Results from '../../components/Results';
+import Results from "../../components/Results";
 
 // Utils
 import API from "../../utils/API";
 
+const Save = () => {
+  const [resultsState, setResultsState] = useState([]);
+  const [showAlert, setShowAlert] = useState("");
+  const [requestError, setRequestError] = useState("");
 
-const Search = () => {
+  useEffect(() => {
+    getSavedBooks();
+  }, []);
 
-    const [resultsState, setResultsState] = useState([{}]);
-    const [showAlert, setShowAlert] = useState('');
+  const getSavedBooks = () => {
+    API.getBooks()
+      .then((res) => {
+        setResultsState(res.data || []);
+        setRequestError("");
+      })
+      .catch(() => {
+        setRequestError("Unable to load your saved shelf right now.");
+      });
+  };
 
-    useEffect(() => {
-        getSavedBooks();
-    }, []);
+  const deleteBook = (id, index) => {
+    API.deleteBook(id)
+      .then(() => {
+        setRequestError("");
+        showDeletedBookAlert(index);
+      })
+      .catch(() => {
+        setRequestError("Unable to remove this book right now.");
+      });
+  };
 
-    const getSavedBooks = () => {
-        API.getBooks()
-            .then(res => {
-                console.log('Saved books: ', res.data);
-                setResultsState(res.data);
-            })
-            .catch(err => console.log(err));
-    };
+  const showDeletedBookAlert = (index) => {
+    setShowAlert(index);
+    setTimeout(() => {
+      setShowAlert("");
+      getSavedBooks();
+    }, 1800);
+  };
 
-    const deleteBook = (id, index) => {
-        API.deleteBook(id)
-            .then(res => {
-                console.log('Book deleted');
-                console.log('res: ', res);
-                showDeletedBookAlert(index);
-            })
-            .catch(err => console.log(err));
-    };
+  const handleDeleteClick = (id, index) => {
+    deleteBook(id, index);
+  };
 
-    const showDeletedBookAlert = (index) => {
-        setShowAlert(index);
-        setTimeout(() => {
-            setShowAlert('');
-            getSavedBooks();
-        }, 2000);
-        
-    }
+  return (
+    <section className="page-shell">
+      {requestError ? (
+        <Alert className="status-alert" variant="danger">
+          {requestError}
+        </Alert>
+      ) : null}
 
-    const handleDeleteClick = e => {
-        let index = e.target.getAttribute('index');
-        let id = e.target.getAttribute('id');
-        console.log('book_id to delete: ', id);
-        deleteBook(id, index);
-    }
+      <Results
+        title={"Saved Books"}
+        results={resultsState}
+        showAlert={showAlert}
+        handleDeleteClick={handleDeleteClick}
+      />
+    </section>
+  );
+};
 
-    return (
-        <div className='px-5'>
-            <Results
-                title={'Saved books'}
-                results={resultsState}
-                showAlert={showAlert}
-                handleDeleteClick={handleDeleteClick}
-            />
-        </div>
-    );
-}
-
-export default Search;
+export default Save;

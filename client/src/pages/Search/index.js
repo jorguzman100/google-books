@@ -1,92 +1,133 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Alert } from "react-bootstrap";
 
 // Components
-import BookSearch from '../../components/BookSearch';
-import Results from '../../components/Results';
+import BookSearch from "../../components/BookSearch";
+import Results from "../../components/Results";
 
 // Utils
 import GoogleAPI from "../../utils/GoogleAPI";
 import API from "../../utils/API";
 
+const PLACEHOLDER_COVER = `${process.env.PUBLIC_URL}/images/book-placeholder.svg`;
 
 const Search = () => {
+  const [searchState, setSearchState] = useState({
+    search: ""
+  });
+  const [resultsState, setResultsState] = useState([]);
+  const [showAlert, setShowAlert] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [requestError, setRequestError] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
 
-    const [searchState, setSearchState] = useState({
-        search: ''
-    });
-    const [resultsState, setResultsState] = useState([{}]);
-    const [showAlert, setShowAlert] = useState('');
+  const searchBooks = (query) => {
+    const normalizedQuery = query.trim();
 
-
-    const searchBooks = query => {
-        GoogleAPI.search(query)
-            .then(res => {
-                setResultsState(res.data.items);
-            })
-            .catch(err => console.log(err));
-    };
-
-    const saveBook = (book, index) => {
-        API.saveBook(book)
-            .then(res => {
-                console.log('Book saved');
-                console.log('res: ', res);
-                showSavedBookAlert(index);
-            })
-            .catch(err => console.log(err));
-    };
-
-    const showSavedBookAlert = (index) => {
-        setShowAlert(index);
-        setTimeout(() => {
-            setShowAlert('');
-        }, 3000);
+    if (!normalizedQuery) {
+      setRequestError("Add a search term first so we can fetch recommendations.");
+      setResultsState([]);
+      return;
     }
 
-    const handleInputChange = e => {
-        const name = e.target.name;
-        const value = e.target.value;
-        setSearchState({
-            [name]: value
-        });
-    };
+    setHasSearched(true);
+    setIsLoading(true);
+    setRequestError("");
 
-    const handleFormSubmit = e => {
-        e.preventDefault();
-        searchBooks(searchState.search);
-    };
+    GoogleAPI.search(normalizedQuery)
+      .then((res) => {
+        setResultsState(res && res.data && res.data.items ? res.data.items : []);
+        setRequestError("");
+      })
+      .catch(() => {
+        setRequestError("Book search is unavailable right now. Please try again.");
+        setResultsState([]);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
-    const handleSaveClick = e => {
-        let index = e.target.getAttribute('index');
-        let book = {
-            _id: resultsState[index].id,
-            title: resultsState[index].volumeInfo.title,
-            subtitle: resultsState[index].volumeInfo.subtitle,
-            authors: resultsState[index].volumeInfo.authors,
-            description: resultsState[index].volumeInfo.description,
-            image: resultsState[index].volumeInfo.imageLinks.thumbnail,
-            link: resultsState[index].volumeInfo.infoLink
-        }
-        console.log('book: ', book);
-        saveBook(book, index);
+  const saveBook = (book, index) => {
+    API.saveBook(book)
+      .then(() => {
+        setRequestError("");
+        showSavedBookAlert(index);
+      })
+      .catch(() => {
+        setRequestError("Unable to save this book right now. Please try again.");
+      });
+  };
+
+  const showSavedBookAlert = (index) => {
+    setShowAlert(index);
+    setTimeout(() => {
+      setShowAlert("");
+    }, 2500);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setSearchState({ [name]: value });
+
+    if (requestError) {
+      setRequestError("");
+    }
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    searchBooks(searchState.search);
+  };
+
+  const handleSaveClick = (index) => {
+    const selectedResult = resultsState[index];
+    const volumeInfo = selectedResult ? selectedResult.volumeInfo : undefined;
+
+    if (!selectedResult || !volumeInfo) {
+      return;
     }
 
+    const image = volumeInfo.imageLinks
+      ? volumeInfo.imageLinks.thumbnail
+      : PLACEHOLDER_COVER;
 
-    return (
-        <div className='px-5'>
-            <BookSearch
-                search={searchState.search}
-                handleInputChange={handleInputChange}
-                handleFormSubmit={handleFormSubmit}
-            />
-            <Results
-                title={'Results'}
-                results={resultsState}
-                showAlert={showAlert}
-                handleSaveClick={handleSaveClick}
-            />
-        </div>
-    );
-}
+    const book = {
+      _id: selectedResult.id,
+      title: volumeInfo.title,
+      subtitle: volumeInfo.subtitle,
+      authors: volumeInfo.authors,
+      description: volumeInfo.description,
+      image,
+      link: volumeInfo.infoLink
+    };
+
+    saveBook(book, index);
+  };
+
+  return (
+    <section className="page-shell">
+      <BookSearch
+        search={searchState.search}
+        handleInputChange={handleInputChange}
+        handleFormSubmit={handleFormSubmit}
+        isLoading={isLoading}
+      />
+
+      {requestError ? (
+        <Alert className="status-alert" variant="danger">
+          {requestError}
+        </Alert>
+      ) : null}
+
+      <Results
+        title={hasSearched ? "Search Results" : "Discover Books"}
+        results={resultsState}
+        showAlert={showAlert}
+        handleSaveClick={handleSaveClick}
+      />
+    </section>
+  );
+};
 
 export default Search;
