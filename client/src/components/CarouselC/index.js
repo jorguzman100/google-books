@@ -4,19 +4,19 @@ import "./CarouselC.css";
 
 const slides = [
   {
-    image: `${process.env.PUBLIC_URL}/images/carousel1.jpg`,
+    image: `${process.env.PUBLIC_URL}/images/carousel1.webp`,
     badge: "Explore",
     title: "Find books that match your vibe",
     subtitle: "Search millions of titles and surface new favorites in seconds."
   },
   {
-    image: `${process.env.PUBLIC_URL}/images/carousel2.jpg`,
+    image: `${process.env.PUBLIC_URL}/images/carousel2.webp`,
     badge: "Curate",
     title: "Build a beautiful personal reading shelf",
     subtitle: "Save what matters now and return to it whenever inspiration hits."
   },
   {
-    image: `${process.env.PUBLIC_URL}/images/carousel3.jpg`,
+    image: `${process.env.PUBLIC_URL}/images/carousel3.webp`,
     badge: "Flow",
     title: "Move from discovery to deep reading",
     subtitle: "Jump straight to official previews and keep momentum in your reading journey."

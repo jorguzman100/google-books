@@ -1,8 +1,6 @@
 import React from "react";
 import { Card, Alert, Badge } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-
-// Components
 import BookCard from "../BookCard.js";
 import "./Results.css";
 

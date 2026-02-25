@@ -5,17 +5,18 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 
 function Detail() {
-  const [book, setBook] = useState({})
-  
-  // Add code to get the book with an _id equal to the id in the route param
-  // e.g. http://localhost:3000/books/:id
-  // The book id for this route can be accessed using the useParams hook
-  // from react-router-dom.
+  const [book, setBook] = useState({});
+  const { id } = useParams();
+
   useEffect(() => {
-    API.getBook(/* book id should be passed here */)
+    if (!id) {
+      return;
+    }
+
+    API.getBook(id)
       .then(res => setBook(res.data))
       .catch(err => console.log(err));
-  }, [])
+  }, [id]);
 
   return (
       <Container fluid>

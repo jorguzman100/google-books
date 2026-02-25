@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Alert } from "react-bootstrap";
-
-// Components
 import Results from "../../components/Results";
-
-// Utils
 import API from "../../utils/API";
 
 const Save = () => {

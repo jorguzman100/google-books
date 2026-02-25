@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-
-// Custom Components
 import NavbarC from "./components/NavBarC";
 import CarouselC from "./components/CarouselC";
 import Search from "./pages/Search";

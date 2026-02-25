@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { Alert } from "react-bootstrap";
-
-// Components
 import BookSearch from "../../components/BookSearch";
 import Results from "../../components/Results";
-
-// Utils
 import GoogleAPI from "../../utils/GoogleAPI";
 import API from "../../utils/API";
 
