@@ -4,7 +4,10 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
-const MONGO_URI = process.env.MONGODB_URI || process.env.MONGODB_LOCAL;
+const rawMongoUri = process.env.MONGODB_URI || process.env.MONGODB_LOCAL;
+const MONGO_URI = typeof rawMongoUri === "string"
+  ? rawMongoUri.trim().replace(/^['"]|['"]$/g, "")
+  : rawMongoUri;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -38,5 +41,8 @@ mongoose.connect(MONGO_URI, {
   })
   .catch(function (error) {
     console.error("MongoDB connection failed:", error.message);
+    console.error(
+      "Check MONGODB_URI in Render: no surrounding quotes, no extra spaces, and URL-encode special characters in the password."
+    );
     process.exit(1);
   });
