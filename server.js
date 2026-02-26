@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+const MONGO_URI = process.env.MONGODB_URI || process.env.MONGODB_LOCAL;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -13,17 +14,29 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+app.get("/healthz", function (_req, res) {
+  res.status(200).json({ status: "ok" });
+});
+
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || process.env.MONGODB_LOCAL,
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-  }
-);
+if (!MONGO_URI) {
+  console.error("Missing MongoDB connection string. Set MONGODB_URI or MONGODB_LOCAL.");
+  process.exit(1);
+}
 
-app.listen(PORT, function () {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-});
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
+})
+  .then(function () {
+    app.listen(PORT, function () {
+      console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+    });
+  })
+  .catch(function (error) {
+    console.error("MongoDB connection failed:", error.message);
+    process.exit(1);
+  });

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: google-books
+    runtime: node
+    plan: free
+    buildCommand: npm run render-build
+    startCommand: npm run start:prod
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 18.20.4
+      - key: MONGODB_URI
+        sync: false
+      - key: GOOGLE_BOOKS_API_KEY
+        sync: false
