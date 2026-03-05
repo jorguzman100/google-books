@@ -1,4 +1,4 @@
-# 📚 ShelfSpark (Google Books)
+# 📚 ShelfSpark
 
 ### Search books fast, preview them, and build a saved reading shelf that actually feels nice to use.
 
@@ -53,10 +53,10 @@ ShelfSpark is a full-stack Google Books app built with React, Express, and Mongo
 
 ## 🚀 Live Demo
 
-![Deployment](https://img.shields.io/badge/Deployment-Not%20deployed%20yet-lightgrey?style=for-the-badge)
-[![GitHub](https://img.shields.io/badge/GitHub-Repo-181717?style=for-the-badge&logo=github)](https://github.com/jorguzman100/google-books)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Shelf_Spark-22c55e?style=for-the-badge)](https://shelfspark.onrender.com/)
 
-No public deployment yet. Local run is ready, and the project is structured for deployment later.
+[![Visit Portfolio](https://img.shields.io/badge/Visit%20My%20Portfolio-jorgeguzman.dev-22c55e?style=for-the-badge)](https://portfolio.jorgeguzman.dev/)
+
 
 ---
 
