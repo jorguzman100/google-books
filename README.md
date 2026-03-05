@@ -53,7 +53,7 @@ ShelfSpark is a full-stack Google Books app built with React, Express, and Mongo
 
 ## 🚀 Live Demo
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Shelf_Spark-22c55e?style=for-the-badge)](https://shelfspark.onrender.com/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-ShelfSpark-22c55e?style=for-the-badge)](https://shelfspark.onrender.com/)
 
 [![Visit Portfolio](https://img.shields.io/badge/Visit%20My%20Portfolio-jorgeguzman.dev-22c55e?style=for-the-badge)](https://portfolio.jorgeguzman.dev/)
 
